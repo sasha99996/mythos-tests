@@ -6,5 +6,5 @@ from storage.urls import MythosUrls
 
 class TestMythology:
     def test_get_mythology_list(self):
-        response = send_request("GET", MythosUrls)
+        response = send_request("GET", MythosUrls.MYTHOLOGE_URL)
         assert response.status_code == 200
