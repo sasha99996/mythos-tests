@@ -12,7 +12,7 @@ class TestMythology:
         mythology_id = response.json()["id"]
 
         delete_response = delete_mythology_by_id(auth, mythology_id)
-        assert delete_response.status_code in [200, 204]
+        assert delete_response.status_code in [200, 204], "Персонаж не удален"
 
         find_response = find_mythology_by_id(auth, mythology_id)
         assert find_response.status_code == 404
