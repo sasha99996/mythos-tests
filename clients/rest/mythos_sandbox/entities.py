@@ -17,10 +17,10 @@ def find_mythology_by_id(auth, id):
         method="GET", resource_url=f"{MythosUrls.MYTHOLOGE_URL}/{id}", headers=auth)
 
 
-def fully_update_mythology_by_id(auth, id):
-    body = {"name": id, "category": id, "desc": id, "img": id}
+def fully_update_mythology_by_id(auth, mythology_id, name="Посейдон", category="gods", desc="Бог морей", img="https://images.com/"):
+    body = {"name": name, "category": category, "desc": desc, "img": img}
     return send_request(
-        method="PUT",resource_url=f"{MythosUrls.MYTHOLOGE_URL}/{id}",
+        method="PUT",resource_url=f"{MythosUrls.MYTHOLOGE_URL}/{mythology_id}",
         headers=auth,
         json=body
     )
