@@ -10,3 +10,9 @@ def create_mythology(auth, name="Посейдон", category="gods", desc="Бо�
 def delete_mythology_by_id(auth, id):
     return send_request(
         "DELETE", f"{MythosUrls.MYTHOLOGE_URL}/{id}", headers=auth)
+
+
+def get_mythology_by_id(auth, id):
+    return send_request(
+        method="GET", resource_url=f"{MythosUrls.MYTHOLOGE_URL}/{id}", headers=auth
+    )
