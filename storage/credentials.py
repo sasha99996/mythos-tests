@@ -4,9 +4,9 @@
 """
 
 
-class UserTest12345:
-    USERNAME = "test12345"
-    PASS = "test12345"
+class UserTuco:
+    USERNAME = "Tuco"
+    PASS = "JtRk_nw7{Wm"
     CREDS = f"""
         {{
             "username": "{USERNAME}",
