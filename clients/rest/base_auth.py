@@ -1,9 +1,9 @@
 from clients.rest.base_http import send_request
 from storage.urls import AuthUrls
-from storage.credentials import UserTest12345
+from storage.credentials import UserTuco
 
 
-def get_entities_auth_headers(creds=UserTest12345.CREDS):
+def get_entities_auth_headers(creds=UserTuco.CREDS):
     """
     Функция возвращает авторизационный токен для entities
     """
