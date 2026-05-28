@@ -13,5 +13,5 @@ class TestMythology:
 
         mythology_id = new_myth.json()["id"]
 
-        response = get_mythology_by_id(auth, mythology_id)
+        response = get_mythology_by_id(mythology_id)
         assert response.status_code == 200, "Сущность не найдена"
