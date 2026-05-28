@@ -13,5 +13,16 @@ def delete_mythology_by_id(auth, id):
 
 
 def get_mythology_by_id(id):
+    return send_request(method = "GET", resource_url = f"{MythosUrls.MYTHOLOGE_URL}/{id}")
+
+
+def fully_update_mythology_by_id(
+        auth, mythology_id, name="Посейдон", category="gods", desc="Бог морей", img="https://images.com/"):
+    body = {"name": name, "category": category, "desc": desc, "img": img}
     return send_request(
-        method="GET", resource_url=f"{MythosUrls.MYTHOLOGE_URL}/{id}")
+        method="PUT",resource_url=f"{MythosUrls.MYTHOLOGE_URL}/{mythology_id}",
+        headers=auth,
+        json=body
+    )
+
+
