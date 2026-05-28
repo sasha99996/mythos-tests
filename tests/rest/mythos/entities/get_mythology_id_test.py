@@ -14,3 +14,9 @@ class TestMythology:
         response = get_mythology_by_id(mythology_id)
 
         assert response.status_code == 200, "Сущность не найдена"
+
+
+    def test_get_mythology_id_with_fixture(self, mythology_id_by_user_tuco):
+        response = get_mythology_by_id(mythology_id_by_user_tuco)
+
+        assert response.status_code == 200, "Сущность не найдена"

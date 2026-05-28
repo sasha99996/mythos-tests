@@ -23,3 +23,15 @@ class TestMythology:
 
         delete_response = delete_mythology_by_id(auth, mythology_id)
         assert delete_response.status_code == 204, "Персонаж не удален"
+
+
+    def test_f_update_mythology_by_id_with_fixtures(self, auth_user_tuco, mythology_id_by_user_tuco):
+        update_response = fully_update_mythology_by_id(
+            auth_user_tuco,
+            mythology_id_by_user_tuco,
+            name="stone"
+        )
+        assert update_response.status_code == 200, "Персонаж не обновлен"
+
+        new_name = get_mythology_by_id(mythology_id_by_user_tuco).json()["name"]
+        assert new_name == "stone", "Имя не изменено"
