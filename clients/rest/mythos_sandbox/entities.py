@@ -12,6 +12,10 @@ def delete_mythology_by_id(auth, id):
         "DELETE", f"{MythosUrls.MYTHOLOGE_URL}/{id}", headers=auth)
 
 
+def get_all_mythology(params=None):
+    return send_request(method = "GET", resource_url = f"{MythosUrls.MYTHOLOGE_URL}", params = params)
+
+
 def get_mythology_by_id(id):
     return send_request(method = "GET", resource_url = f"{MythosUrls.MYTHOLOGE_URL}/{id}")
 
