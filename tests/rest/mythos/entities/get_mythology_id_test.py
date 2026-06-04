@@ -1,7 +1,8 @@
 from clients.rest.base_auth import get_entities_auth_headers
 from clients.rest.mythos_sandbox.entities import get_mythology_by_id, create_mythology
-
-
+from clients.data_generator import get_random_string
+from clients.rest.base_validation import check_response_code
+import pytest
 class TestMythology:
     def test_get_mythology_id(self):
         auth = get_entities_auth_headers()
@@ -20,3 +21,9 @@ class TestMythology:
         response = get_mythology_by_id(mythology_id_by_user_tuco)
 
         assert response.status_code == 200, "Сущность не найдена"
+
+    @pytest.mark.skip("Припросе сущности с ID из 50 знаков возвращается код 500")
+    def test_get_mythology_with_long_id(self):
+        long_mythology_id = get_random_string(size=50, string_type="digits")
+        response = get_mythology_by_id(long_mythology_id)
+        check_response_code(response, expected_code=200)
