@@ -19,9 +19,9 @@ class TestMythology:
         check_value_in_dicts(response.json(), key="category", value=category)
 
 
-    @pytest.mark.parametrize("sort", ["asc", "desc"])
-    def test_get_mythology__list_sorted_by_key(self, sort):
-        response = get_all_mythology(params={"sort": sort})
+    @pytest.mark.parametrize("sort, category",[("asc", "gods"),("desc", "gods"),])
+    def test_get_mythology__list_sorted_by_key(self, sort, category:str):
+        response = get_all_mythology(params={"sort": sort, "category": category})
         check_response_code(response, expected_code=200)
-        check_dicts_are_sorted_by_key(response.json(), key="id", reverse=(sort == "desc"))
+        check_dicts_are_sorted_by_key(response.json(), key="name", reverse=(sort == "desc"))
 
