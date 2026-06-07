@@ -30,3 +30,11 @@ def fully_update_mythology_by_id(
     )
 
 
+def partial_update_mythology_by_id(auth, mythology_id, **kwargs):
+    return send_request(
+        method="PATCH",resource_url=f"{MythosUrls.MYTHOLOGE_URL}/{mythology_id}",
+        headers=auth,
+        json=kwargs
+    )
+
+

@@ -27,3 +27,9 @@ class TestMythology:
         long_mythology_id = get_random_string(size=50, string_type="digits")
         response = get_mythology_by_id(long_mythology_id)
         check_response_code(response, expected_code=200)
+
+
+    def test_negative_get_mythology_id(self):  #Негативный автотест при введении букв в поле для ID
+        negative_mythology_id = get_random_string(size=10, string_type="letters")
+        response = get_mythology_by_id(negative_mythology_id)
+        check_response_code(response, expected_code=400)
