@@ -1,5 +1,6 @@
 from clients.rest.mythos_sandbox.entities import create_mythology, delete_mythology_by_id, get_mythology_by_id
 from clients.rest.base_auth import get_entities_auth_headers
+from clients.rest.base_validation import check_response_code
 
 
 class TestMythology:
@@ -16,4 +17,13 @@ class TestMythology:
 
         find_response = get_mythology_by_id(mythology_id)
         assert find_response.status_code == 404, "Сущность найдена"
+
+
+    def test_negative_delete_mythology_by_id(self):  #Удаление сущности без авторизации (негативный тест)
+        response = create_mythology
+        check_response_code(response, expected_code=201)
+        mythology_id = response.json()["id"]
+        delete_response = delete_mythology_by_id(mythology_id)
+        check_response_code(response, expected_code=201)
+
 
