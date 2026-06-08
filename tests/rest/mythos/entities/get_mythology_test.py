@@ -3,13 +3,16 @@ from clients.rest.base_http import send_request
 from storage.urls import MythosUrls
 from clients.rest.mythos_sandbox.entities import get_all_mythology, get_mythology_by_id
 from clients.rest.base_validation import check_response_code, check_value_in_dicts, check_dicts_are_sorted_by_key
-
+import pytest
+import allure
 
 
 class TestMythology:
+    @allure.feature("GET /api/mythology")
+    @allure.title("Получить список всех сущностей")
     def test_get_mythology_list(self):
         response = get_all_mythology(params={"category": "category"})
-        check_response_code(response, expected_code=200)
+        assert response.status_code == 200, "Список сущностей не найден"
 
 
     @pytest.mark.parametrize("category", ["gods", "heroes", "creatures"])
