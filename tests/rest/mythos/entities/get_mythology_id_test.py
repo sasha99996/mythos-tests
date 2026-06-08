@@ -3,7 +3,12 @@ from clients.rest.mythos_sandbox.entities import get_mythology_by_id, create_myt
 from clients.data_generator import get_random_string
 from clients.rest.base_validation import check_response_code
 import pytest
+import allure
+
+@pytest.mark.get_mythology_id
+@allure.feature("GET /api/mythology/id")
 class TestMythology:
+    @allure.title("Получение сущности по ID")
     def test_get_mythology_id(self):
         auth = get_entities_auth_headers()
 

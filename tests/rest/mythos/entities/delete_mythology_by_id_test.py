@@ -1,9 +1,13 @@
 from clients.rest.mythos_sandbox.entities import create_mythology, delete_mythology_by_id, get_mythology_by_id
 from clients.rest.base_auth import get_entities_auth_headers
 from clients.rest.base_validation import check_response_code
+import pytest
+import allure
 
-
+@pytest.mark.delete_mythology_id
+@allure.feature("DELETE /api/mythology/id")
 class TestMythology:
+    @allure.title("Удаление сущности по ID")
     def test_delete_mythology_id(self):
         auth = get_entities_auth_headers()
 

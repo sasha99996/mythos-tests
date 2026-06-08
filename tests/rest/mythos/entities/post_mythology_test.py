@@ -1,7 +1,13 @@
 from clients.rest.mythos_sandbox.entities import create_mythology, delete_mythology_by_id
 from clients.rest.base_auth import get_entities_auth_headers
+import pytest
+import allure
 
+
+@pytest.mark.post_mythology
+@allure.feature("POST /api/mythology/id")
 class TestMythology:
+    @allure.title("Создание сущности")
     def test_create_mythology(self):
         auth = get_entities_auth_headers()
         response = create_mythology(auth)

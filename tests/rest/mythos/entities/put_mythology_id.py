@@ -6,7 +6,7 @@ from clients.rest.base_auth import get_entities_auth_headers
 
 
 @pytest.mark.put_mythology
-@allure.feature("PUT /api/mythology")
+@allure.feature("PUT /api/mythology/id")
 class TestMythology:
     @allure.testcase("https://app.qase.io/case/MSA-22")
     @allure.title("Полное обновление сущности")
