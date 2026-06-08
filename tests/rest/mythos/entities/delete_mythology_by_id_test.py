@@ -20,10 +20,11 @@ class TestMythology:
 
 
     def test_negative_delete_mythology_by_id(self):  #Удаление сущности без авторизации (негативный тест)
-        response = create_mythology
+        auth = get_entities_auth_headers()
+        response = create_mythology(auth)
         check_response_code(response, expected_code=201)
         mythology_id = response.json()["id"]
-        delete_response = delete_mythology_by_id(mythology_id)
-        check_response_code(response, expected_code=201)
+        delete_response = delete_mythology_by_id(None, mythology_id)
+        check_response_code(delete_response, expected_code=401)
 
 
