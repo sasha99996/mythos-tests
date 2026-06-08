@@ -8,8 +8,8 @@ from clients.rest.base_validation import check_response_code, check_value_in_dic
 
 class TestMythology:
     def test_get_mythology_list(self):
-        response = send_request("GET", MythosUrls.MYTHOLOGE_URL)
-        assert response.status_code == 200
+        response = get_all_mythology(params={"category": "category"})
+        check_response_code(response, expected_code=200)
 
 
     @pytest.mark.parametrize("category", ["gods", "heroes", "creatures"])
