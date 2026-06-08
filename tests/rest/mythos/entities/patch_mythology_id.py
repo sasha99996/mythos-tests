@@ -9,10 +9,11 @@ import allure
 @allure.feature("PATCH /api/mythology/id")
 @allure.title("Частичное обновление сущности")
 def test_patch_mythology_without_auth(mythology_id_by_user_tuco):
-    response = partial_update_mythology_by_id(
+    with allure.step("Шаг: авторизация юзером tuco с помощью фикстуры и присваивание значения переменной response"):
+        response = partial_update_mythology_by_id(
         auth=None,
         mythology_id=mythology_id_by_user_tuco,
         name="Зевс"
     )
-
-    check_response_code(response, expected_code=401)
+    with allure.step("Шаг: проверка код ответа = 401"):
+        check_response_code(response, expected_code=401)

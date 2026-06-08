@@ -18,14 +18,20 @@ class TestMythology:
     @pytest.mark.parametrize("category", ["gods", "heroes", "creatures"])
     @allure.title("Получение списка всех сущностей с параметризацией категории")
     def test_get_mythology_list_with_category_filter(self, category):
-        response = get_all_mythology(params={"category": category})
-        check_response_code(response, expected_code=200)
-        check_value_in_dicts(response.json(), key="category", value=category)
+        with allure.step("Шаг: получаем список героев и присваиваем значение переменной response"):
+            response = get_all_mythology(params={"category": category})
+        with allure.step("Шаг: проверка код ответа = 200"):
+            check_response_code(response, expected_code=200)
+        with allure.step("Шаг: проверка что значение по ключу в каждом словаре совпадает с выбранным условием"):
+            check_value_in_dicts(response.json(), key="category", value=category)
 
 
     @pytest.mark.parametrize("sort, reverse", [("asc", False), ("desc", True)])
     @allure.title("Получение списка всех сущностей с параметризацией сортировки")
     def test_get_mythology_list_with_category_filter_1(self, sort, reverse):
-        response = get_all_mythology(params={"category": "creatures", "sort": sort})
-        check_response_code(response, 200)
-        check_dicts_are_sorted_by_key(response.json(), key="name", reverse=reverse)
+        with allure.step("Шаг: получаем список героев и присваиваем значение переменной response"):
+            response = get_all_mythology(params={"category": "creatures", "sort": sort})
+        with allure.step("Шаг: проверка код ответа = 200"):
+            check_response_code(response, 200)
+        with allure.step("Шаг: проверка что список словарей items отсортирован по указанному ключу key"):
+            check_dicts_are_sorted_by_key(response.json(), key="name", reverse=reverse)
