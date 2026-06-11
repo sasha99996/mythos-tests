@@ -11,8 +11,8 @@ class TestMythology:
     @allure.feature("GET /api/mythology")
     @allure.title("Получить список всех сущностей")
     def test_get_mythology_list(self):
-        response = get_all_mythology(params={"category": "category"})
-        assert response.status_code == 200, "Список сущностей не найден"
+        response = get_all_mythology()
+        check_response_code(response, 200)
 
 
     @pytest.mark.parametrize("category", ["gods", "heroes", "creatures"])
