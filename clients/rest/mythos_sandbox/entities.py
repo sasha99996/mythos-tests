@@ -4,17 +4,13 @@ from storage.urls import MythosUrls
 
 def create_mythology(auth, name="Посейдон", category="gods",
     desc="Бог морей", img="https://images.com/"):
-    """
-         Функция для создания сущности
-    """
+    """Функция для создания сущности"""
     body = {"name": name, "category": category, "desc": desc, "img": img}
     return send_request("POST",MythosUrls.MYTHOLOGE_URL, json=body, headers=auth)
 
 
 def delete_mythology_by_id(auth, id):
-    """
-        Функция удаления сущности по ID
-    """
+    """Функция удаления сущности по ID"""
     return send_request(
         "DELETE", f"{MythosUrls.MYTHOLOGE_URL}/{id}", headers=auth)
 
