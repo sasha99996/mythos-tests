@@ -3,13 +3,18 @@
 или локальном evn-файле
 """
 
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
 
 class UserTuco:
-    USERNAME = "Tuco"
-    PASS = "JtRk_nw7{Wm"
+    USER_NAME = f"{os.getenv('TUCO_USER_NAME')}"
+    PASSWORD = f"{os.getenv('TUCO_PASSWORD')}"
     CREDS = f"""
         {{
-            "username": "{USERNAME}",
-            "password": "{PASS}"
+            "username": "{USER_NAME}",
+            "password": "{PASSWORD}"
         }}
         """
