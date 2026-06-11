@@ -8,6 +8,7 @@ import allure
 @pytest.mark.get_mythology_id
 @allure.feature("GET /api/mythology/id")
 class TestMythology:
+    @allure.testcase("https://app.qase.io/case/MSA-22")
     @allure.title("Получение сущности по ID")
     def test_get_mythology_id(self):
         with allure.step("Шаг: авторизация"):

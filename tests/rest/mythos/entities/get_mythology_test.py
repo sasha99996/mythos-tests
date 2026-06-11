@@ -9,6 +9,7 @@ from clients.rest.base_validation import check_response_code, check_value_in_dic
 @pytest.mark.get_all_mythology
 @allure.feature("GET /api/mythology")
 class TestMythology:
+    @allure.testcase("https://app.qase.io/case/MSA-22")
     @allure.title("Получение списка всех сущностей")
     def test_get_mythology_list(self):
         response = send_request("GET", MythosUrls.MYTHOLOGE_URL)
@@ -16,6 +17,7 @@ class TestMythology:
 
 
     @pytest.mark.parametrize("category", ["gods", "heroes", "creatures"])
+    @allure.testcase("https://app.qase.io/case/MSA-22")
     @allure.title("Получение списка всех сущностей с параметризацией категории")
     def test_get_mythology_list_with_category_filter(self, category):
         with allure.step("Шаг: получаем список героев и присваиваем значение переменной response"):
@@ -27,6 +29,7 @@ class TestMythology:
 
 
     @pytest.mark.parametrize("sort, reverse", [("asc", False), ("desc", True)])
+    @allure.testcase("https://app.qase.io/case/MSA-22")
     @allure.title("Получение списка всех сущностей с параметризацией сортировки")
     def test_get_mythology_list_with_category_filter_1(self, sort, reverse):
         with allure.step("Шаг: получаем список героев и присваиваем значение переменной response"):

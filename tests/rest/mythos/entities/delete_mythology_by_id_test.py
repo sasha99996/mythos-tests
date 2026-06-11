@@ -7,6 +7,7 @@ import allure
 @pytest.mark.delete_mythology_id
 @allure.feature("DELETE /api/mythology/id")
 class TestMythology:
+    @allure.testcase("https://app.qase.io/case/MSA-22")
     @allure.title("Удаление сущности по ID")
     def test_delete_mythology_id(self):
         with allure.step("Шаг: получение токена"):

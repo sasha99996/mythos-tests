@@ -7,6 +7,7 @@ import allure
 @pytest.mark.post_mythology
 @allure.feature("POST /api/mythology/id")
 class TestMythology:
+    @allure.testcase("https://app.qase.io/case/MSA-22")
     @allure.title("Создание сущности")
     def test_create_mythology(self):
         with allure.step("Шаг: авторизация"):

@@ -7,6 +7,7 @@ import allure
 
 @pytest.mark.patch_mythology
 @allure.feature("PATCH /api/mythology/id")
+@allure.testcase("https://app.qase.io/case/MSA-22")
 @allure.title("Частичное обновление сущности")
 def test_patch_mythology_without_auth(mythology_id_by_user_tuco):
     with allure.step("Шаг: авторизация юзером tuco с помощью фикстуры и присваивание значения переменной response"):
