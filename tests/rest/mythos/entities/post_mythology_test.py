@@ -9,17 +9,15 @@ import allure
 class TestMythology:
     @allure.testcase("https://app.qase.io/case/MSA-22")
     @allure.title("Создание сущности")
-    def test_create_mythology(self):
-        with allure.step("Шаг: авторизация"):
-            auth = get_entities_auth_headers()
+    def test_create_mythology(self, auth_user_tuco):
         with allure.step("Шаг: создание mythology и присваивание значения переменной response"):
-            response = create_mythology(auth)
+            response = create_mythology(auth_user_tuco)
         with allure.step("Шаг: проверка код ответа = 201"):
             assert response.status_code == 201, "Сущность не создана"
         with allure.step("Шаг: получение ID сущности"):
             mythology_id = response.json()["id"]
         with allure.step("Шаг: удаление сущности по ID"):
-            delete_mythology_by_id(auth, mythology_id)
+            delete_mythology_by_id(auth_user_tuco, mythology_id)
         with allure.step("Шаг: поиск удаленной сущности"):
             response = get_mythology_by_id(mythology_id) #Добавлена проверку после удаления сущности
         with allure.step("Шаг: проверка код ответа = 404"):
