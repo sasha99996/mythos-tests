@@ -10,9 +10,9 @@ import allure
 class TestMythology:
     @allure.testcase("https://app.qase.io/case/MSA-22")
     @allure.title("Получение сущности по ID")
-    def test_get_mythology_id(self):
+    def test_get_mythology_id(self, auth_user_tuco):
         with allure.step("Шаг: авторизация"):
-            auth = get_entities_auth_headers()
+            auth = auth_user_tuco
         with allure.step("Шаг: создать сущность"):
             new_myth = create_mythology(auth)
         with allure.step("Проверка: код ответа = 201"):

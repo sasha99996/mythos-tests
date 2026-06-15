@@ -4,14 +4,15 @@ from clients.rest.base_validation import check_response_code
 import pytest
 import allure
 
+
 @pytest.mark.delete_mythology_id
 @allure.feature("DELETE /api/mythology/id")
 class TestMythology:
     @allure.testcase("https://app.qase.io/case/MSA-22")
     @allure.title("Удаление сущности по ID")
-    def test_delete_mythology_id(self):
+    def test_delete_mythology_id(self, auth_user_tuco):
         with allure.step("Шаг: получение токена"):
-            auth = get_entities_auth_headers()
+            auth = auth_user_tuco
         with allure.step("Шаг: создать сущность"):
             response = create_mythology(auth)
         with allure.step("Проверка: код ответа = 201"):
@@ -28,8 +29,8 @@ class TestMythology:
             assert find_response.status_code == 404, "Сущность найдена"
 
 
-    def test_negative_delete_mythology_by_id(self):  #Удаление сущности без авторизации (негативный тест)
-        auth = get_entities_auth_headers()
+    def test_negative_delete_mythology_by_id(self, auth_user_tuco):  #Удаление сущности без авторизации (негативный тест)
+        auth = auth_user_tuco
         with allure.step("Шаг: создать сущность"):
             response = create_mythology(auth)
         with allure.step("Проверка: код ответа = 201"):
