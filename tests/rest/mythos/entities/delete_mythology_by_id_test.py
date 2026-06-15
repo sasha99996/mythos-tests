@@ -11,16 +11,14 @@ class TestMythology:
     @allure.testcase("https://app.qase.io/case/MSA-22")
     @allure.title("Удаление сущности по ID")
     def test_delete_mythology_id(self, auth_user_tuco):
-        with allure.step("Шаг: получение токена"):
-            auth = auth_user_tuco
         with allure.step("Шаг: создать сущность"):
-            response = create_mythology(auth)
+            response = create_mythology(auth_user_tuco)
         with allure.step("Проверка: код ответа = 201"):
             assert response.status_code == 201, "Сущность не создана"
 
             mythology_id = response.json()["id"]
         with allure.step("Шаг: удалить сущность"):
-            delete_response = delete_mythology_by_id(auth, mythology_id)
+            delete_response = delete_mythology_by_id(auth_user_tuco, mythology_id)
         with allure.step("Проверка: код ответа = 204"):
             assert delete_response.status_code == 204, "Сущность не удалена"
         with allure.step("Шаг: найти сущность"):
@@ -30,9 +28,8 @@ class TestMythology:
 
 
     def test_negative_delete_mythology_by_id(self, auth_user_tuco):  #Удаление сущности без авторизации (негативный тест)
-        auth = auth_user_tuco
         with allure.step("Шаг: создать сущность"):
-            response = create_mythology(auth)
+            response = create_mythology(auth_user_tuco)
         with allure.step("Проверка: код ответа = 201"):
             check_response_code(response, expected_code=201)
         with allure.step("Шаг: получаем ID сущности"):
