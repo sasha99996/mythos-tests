@@ -2,6 +2,12 @@ from clients.rest.base_http import send_request
 from storage.urls import MythosUrls
 
 
+def register_user(username: str, password: str):
+    """Функция для регистрации пользователя"""
+    body = {"username": username, "password": password}
+    return send_request(method="POST", resource_url=MythosUrls.REGISTER_URL, json=body)
+
+
 def create_mythology(auth, name="Посейдон", category="gods",
     desc="Бог морей", img="https://images.com/"):
     """Функция для создания сущности"""

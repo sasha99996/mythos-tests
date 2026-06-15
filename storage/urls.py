@@ -7,3 +7,4 @@ class MythosUrls:
     BASE_URL = "https://api.qasandbox.ru"
     MYTHOLOGE_URL = BASE_URL + "/api/mythology"
     LOGIN_URL = BASE_URL + "/api/login"
+    REGISTER_URL = BASE_URL + "/api/register"
