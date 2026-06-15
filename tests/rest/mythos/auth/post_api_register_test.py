@@ -14,7 +14,7 @@ class TestMythology:
             new_user = get_random_string(size=6, string_type="letters")
         with allure.step("Шаг: получаем набор рандомных букв в размере 6 для пароля"):
             new_password = get_random_string(size=6, string_type="letters")
-        with allure.step("Шаг: производим вход, вводя полученные данные"):
+        with allure.step("Шаг: регистрируемся, вводя полученные данные"):
             new_us = register_user(username=new_user, password=new_password)
         with allure.step("Шаг: проверка код ответ = 201"):
             check_response_code(new_us, 201)
