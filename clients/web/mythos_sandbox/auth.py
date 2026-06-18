@@ -1,5 +1,5 @@
 from selenium.webdriver.common.by import By
-
+from storage.credentials import UserTuco
 from clients.web.base_page import BasePage
 
 
