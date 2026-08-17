@@ -2,6 +2,7 @@ from clients.web.mythos_sandbox.auth import Auth
 import pytest
 import allure
 
+
 @pytest.mark.UI_auth
 @allure.feature("Authorization")
 class TestMythology:

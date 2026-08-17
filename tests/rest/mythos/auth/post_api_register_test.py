@@ -4,6 +4,7 @@ from clients.rest.base_validation import check_response_code
 import allure
 import pytest
 
+
 @pytest.mark.post_register
 @allure.feature("POST /api/register")
 class TestMythology:
@@ -18,5 +19,3 @@ class TestMythology:
             new_us = register_user(username=new_user, password=new_password)
         with allure.step("Шаг: проверка код ответ = 201"):
             check_response_code(new_us, 201)
-
-

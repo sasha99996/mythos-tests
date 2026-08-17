@@ -3,99 +3,95 @@ from clients.web.base_page import BasePage
 
 
 class FormFields(BasePage):
-    NAME_FIELD = (
-        By.CSS_SELECTOR,
-        "input#name-input",
-        "Поле 'Name' на веб-странице")
+    NAME_FIELD = (By.CSS_SELECTOR, "input#name-input", "Поле 'Name' на веб-странице")
 
     PASSWORD_FIELD = (
         By.CSS_SELECTOR,
         "input[type='password']",
-        "Поле 'Password' на веб-странице")
+        "Поле 'Password' на веб-странице",
+    )
 
     FAVORITE_DRINK_MILK = (
         By.CSS_SELECTOR,
         "#drink2",
-        "Чек-бокс 'Milk' для поля 'What is your favorite drink?'")
+        "Чек-бокс 'Milk' для поля 'What is your favorite drink?'",
+    )
 
     FAVORITE_DRINK_WATER = (
         By.CSS_SELECTOR,
         "#drink1",
-        "Чек-бокс 'Water' для поля 'What is your favorite drink?'")
+        "Чек-бокс 'Water' для поля 'What is your favorite drink?'",
+    )
 
     FAVORITE_DRINK_COFFEE = (
         By.CSS_SELECTOR,
         "#drink3",
-        "Чек-бокс 'Coffee' для поля 'What is your favorite drink?'")
+        "Чек-бокс 'Coffee' для поля 'What is your favorite drink?'",
+    )
 
     FAVORITE_COLOR_YELLOW = (
         By.CSS_SELECTOR,
         "#color3",
-        "Чек-бокс 'Yellow' для поля 'Favorite Color'")
+        "Чек-бокс 'Yellow' для поля 'Favorite Color'",
+    )
 
     FAVORITE_COLOR_RED = (
         By.CSS_SELECTOR,
         "#color1",
-        "Чек-бокс 'Red' для поля 'Favorite Color'")
+        "Чек-бокс 'Red' для поля 'Favorite Color'",
+    )
 
     FAVORITE_COLOR_BLUE = (
         By.CSS_SELECTOR,
         "#color2",
-        "Чек-бокс 'Blue' для поля 'Favorite Color'")
+        "Чек-бокс 'Blue' для поля 'Favorite Color'",
+    )
 
     FAVORITE_COLOR_GREEN = (
         By.CSS_SELECTOR,
         "#color4",
-        "Чек-бокс 'Green' для поля 'Favorite Color'")
+        "Чек-бокс 'Green' для поля 'Favorite Color'",
+    )
 
     FAVORITE_COLOR_FFC0CB = (
         By.CSS_SELECTOR,
         "#color5",
-        "Чек-бокс '#FFC0CB' для поля 'Favorite Color'")
+        "Чек-бокс '#FFC0CB' для поля 'Favorite Color'",
+    )
 
     AUTOMATION_FIELD_YES = (
         By.CSS_SELECTOR,
         "[data-testid='automation-yes']",
-        "Чек-бокс 'Yes' для поля 'Do you like automation?'")
+        "Чек-бокс 'Yes' для поля 'Do you like automation?'",
+    )
 
     AUTOMATION_FIELD_NO = (
         By.CSS_SELECTOR,
         "[data-testid='automation-no']",
-        "Чек-бокс 'No' для поля 'Do you like automation?'")
+        "Чек-бокс 'No' для поля 'Do you like automation?'",
+    )
 
     AUTOMATION_FIELD_UNDECIDED = (
         By.CSS_SELECTOR,
         "[data-testid='automation-undecided']",
-        "Чек-бокс 'Undecided' для поля 'Do you like automation?'")
+        "Чек-бокс 'Undecided' для поля 'Do you like automation?'",
+    )
 
-    EMAIL_FIELD = (
-        By.CSS_SELECTOR,
-        "#email",
-        "Поле 'Email' на веб-странице")
+    EMAIL_FIELD = (By.CSS_SELECTOR, "#email", "Поле 'Email' на веб-странице")
 
-    MESSAGE_FIELD = (
-        By.CSS_SELECTOR,
-        "#message",
-        "Поле 'Message' на веб-странице")
+    MESSAGE_FIELD = (By.CSS_SELECTOR, "#message", "Поле 'Message' на веб-странице")
 
-    BTN_SUBMIT = (
-        By.CSS_SELECTOR,
-        "#submit-btn",
-        "Кнопка 'Submit' на веб-странице")
+    BTN_SUBMIT = (By.CSS_SELECTOR, "#submit-btn", "Кнопка 'Submit' на веб-странице")
 
     def fill_in_name_field(self, browser, name="Ivan"):
         """Заполняет поле 'Name' на веб-странице."""
-        name_field = self.find_element(
-            browser, *self.NAME_FIELD, time_wait=20
-        )
+        name_field = self.find_element(browser, *self.NAME_FIELD, time_wait=20)
         name_field.click()
         name_field.send_keys(name)
 
     def fill_in_password_field(self, browser, password="test123"):
         """Заполняет поле 'Password' на веб-странице."""
-        password_field = self.find_element(
-            browser, *self.PASSWORD_FIELD, time_wait=20
-        )
+        password_field = self.find_element(browser, *self.PASSWORD_FIELD, time_wait=20)
         password_field.click()
         password_field.send_keys(password)
 
@@ -139,25 +135,19 @@ class FormFields(BasePage):
 
     def fill_in_email(self, browser, email="ivan@gmail.com"):
         """Заполняет поле 'Email' на веб-странице."""
-        email_field = self.find_element(
-            browser, *self.EMAIL_FIELD, time_wait=20
-        )
+        email_field = self.find_element(browser, *self.EMAIL_FIELD, time_wait=20)
         email_field.click()
         email_field.send_keys(email)
 
     def fill_in_message(self, browser, message="ыыы ааа"):
         """Заполняет поле 'Message' на веб-странице."""
-        message_field = self.find_element(
-            browser, *self.MESSAGE_FIELD, time_wait=20
-        )
+        message_field = self.find_element(browser, *self.MESSAGE_FIELD, time_wait=20)
         message_field.click()
         message_field.send_keys(message)
 
     def click_btn_submit(self, browser):
         """Нажимает кнопку 'Submit' на веб-странице."""
-        submit_button = self.find_element(
-            browser, *self.BTN_SUBMIT, time_wait=20
-        )
+        submit_button = self.find_element(browser, *self.BTN_SUBMIT, time_wait=20)
         submit_button.click()
 
     def get_success_message(self, browser):
@@ -166,4 +156,3 @@ class FormFields(BasePage):
         message = alert.text
         alert.accept()
         return message
-

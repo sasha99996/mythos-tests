@@ -3,6 +3,7 @@ import pytest
 import allure
 from storage.urls import AutomateNow
 
+
 @pytest.mark.automate_now_form_fields
 @allure.feature("Form_Fields")
 class TestAutomateNowFormFields:
@@ -15,7 +16,9 @@ class TestAutomateNowFormFields:
             FormFields().fill_in_name_field(browser)
         with allure.step("Шаг: Заполняем поле 'Password'"):
             FormFields().fill_in_password_field(browser)
-        with allure.step("Выбираем чек-бокс 'Milk' для поля 'What is your favorite drink?'"):
+        with allure.step(
+            "Выбираем чек-бокс 'Milk' для поля 'What is your favorite drink?'"
+        ):
             FormFields().choose_favorite_drink(browser)
         with allure.step("Шаг: Выбираем 'Yellow' в опроснике 'Favorite Color"):
             FormFields().choose_favorite_color(browser)

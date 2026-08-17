@@ -24,19 +24,25 @@ class BasePage:
         except TimeoutException:
             raise TimeoutException(f"URL не изменился - текущий URL {page_url}")
 
-    def wait_and_switch_to_window(self, browser, window_handles=1, num_windows=2, time_wait=10):
+    def wait_and_switch_to_window(
+        self, browser, window_handles=1, num_windows=2, time_wait=10
+    ):
         """
         Ожидает, пока количество окон не станет равным num_windows
         Переключает на окно по индексу window_handles
         Если указанного индекса нет в списке окон, выбрасывается исключение
         """
         try:
-            WebDriverWait(browser, time_wait).until(EC.number_of_windows_to_be(num_windows))
+            WebDriverWait(browser, time_wait).until(
+                EC.number_of_windows_to_be(num_windows)
+            )
             browser.switch_to.window(browser.window_handles[window_handles])
         except (TimeoutException, IndexError) as e:
             raise Exception("Не удалось переключиться на вкладку: " + str(e))
 
-    def element_is_visible(self, browser, method, css_selector, description, time_wait=10, displayed=False):
+    def element_is_visible(
+        self, browser, method, css_selector, description, time_wait=10, displayed=False
+    ):
         wait = WebDriverWait(browser, time_wait)
         try:
             return wait.until(visibility_of_element_located((method, css_selector)))
@@ -45,19 +51,35 @@ class BasePage:
                 return False
             raise TimeoutException(f"Элемент вэб-страницы {description} не найден")
 
-    def find_element(self, browser, method, css_selector, description, check_visibility=True, time_wait=10):
+    def find_element(
+        self,
+        browser,
+        method,
+        css_selector,
+        description,
+        check_visibility=True,
+        time_wait=10,
+    ):
         if check_visibility:
-            self.element_is_visible(browser, method, css_selector, description, time_wait)
+            self.element_is_visible(
+                browser, method, css_selector, description, time_wait
+            )
         return browser.find_element(method, css_selector)
 
-    def elements_is_visible(self, browser, method, css_selector, description, time_wait=10):
+    def elements_is_visible(
+        self, browser, method, css_selector, description, time_wait=10
+    ):
         wait = WebDriverWait(browser, time_wait)
         try:
-            return wait.until(visibility_of_any_elements_located((method, css_selector)))
+            return wait.until(
+                visibility_of_any_elements_located((method, css_selector))
+            )
         except TimeoutException:
             raise TimeoutException(f"Элементы вэб-страницы {description} не найдены")
 
-    def find_elements(self, browser, method, css_selector, description, check_visibility=True):
+    def find_elements(
+        self, browser, method, css_selector, description, check_visibility=True
+    ):
         if check_visibility:
             self.elements_is_visible(browser, method, css_selector, description)
         return browser.find_elements(method, css_selector)
@@ -72,7 +94,10 @@ class BasePage:
 
     def scroll_to_element(self, browser, element):
         """Прокручивает страницу до элемента"""
-        browser.execute_script("arguments[0].scrollIntoView({ behavior: 'smooth', block: 'center' });", element)
+        browser.execute_script(
+            "arguments[0].scrollIntoView({ behavior: 'smooth', block: 'center' });",
+            element,
+        )
 
     def scroll_and_click(self, browser, element):
         """Скроллит страницу до элемента и кликает"""
