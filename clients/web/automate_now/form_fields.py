@@ -1,4 +1,5 @@
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.select import Select
 from clients.web.base_page import BasePage
 
 
@@ -53,20 +54,25 @@ class FormFields(BasePage):
         "#color5",
         "Чек-бокс '#FFC0CB' для поля 'Favorite Color'")
 
+    AUTOMATION_FIELD = (
+        By.CSS_SELECTOR,
+        "#automation",
+        "Выпадающий список 'Do you like automation?'")
+
     AUTOMATION_FIELD_YES = (
         By.CSS_SELECTOR,
-        "[data-testid='automation-yes']",
-        "Чек-бокс 'Yes' для поля 'Do you like automation?'")
+        "#automation option[data-testid='automation-yes']",
+        "Option 'Yes' для поля 'Do you like automation?'")
 
     AUTOMATION_FIELD_NO = (
         By.CSS_SELECTOR,
-        "[data-testid='automation-no']",
-        "Чек-бокс 'No' для поля 'Do you like automation?'")
+        "#automation option[data-testid='automation-no']",
+        "Option 'No' для поля 'Do you like automation?'")
 
     AUTOMATION_FIELD_UNDECIDED = (
         By.CSS_SELECTOR,
-        "[data-testid='automation-undecided']",
-        "Чек-бокс 'Undecided' для поля 'Do you like automation?'")
+        "#automation option[data-testid='automation-undecided']",
+        "Option 'Undecided' для поля 'Do you like automation?'")
 
     EMAIL_FIELD = (
         By.CSS_SELECTOR,
@@ -123,7 +129,7 @@ class FormFields(BasePage):
         favorite_color_field = self.find_element(
             browser, *colors[favorite_color], time_wait=20
         )
-        favorite_color_field.click()
+        self.scroll_and_click(browser, favorite_color_field)
 
     def choose_automation_answer(self, browser, answer="Yes"):
         """Выбирает вариант ответа для поля 'Do you like automation?'."""
@@ -132,17 +138,22 @@ class FormFields(BasePage):
             "No": self.AUTOMATION_FIELD_NO,
             "Undecided": self.AUTOMATION_FIELD_UNDECIDED,
         }
-        automation_answer_field = self.find_element(
-            browser, *answers[answer], time_wait=20
+        automation_answer = self.find_element(
+            browser, *answers[answer], time_wait=20, check_visibility=False
         )
-        automation_answer_field.click()
+        automation_field = self.find_element(
+            browser, *self.AUTOMATION_FIELD, time_wait=20
+        )
+        Select(automation_field).select_by_value(
+            automation_answer.get_attribute("value")
+        )
 
     def fill_in_email(self, browser, email="ivan@gmail.com"):
         """Заполняет поле 'Email' на веб-странице."""
         email_field = self.find_element(
             browser, *self.EMAIL_FIELD, time_wait=20
         )
-        email_field.click()
+        self.scroll_to_element(browser, email_field)
         email_field.send_keys(email)
 
     def fill_in_message(self, browser, message="ыыы ааа"):
@@ -150,7 +161,7 @@ class FormFields(BasePage):
         message_field = self.find_element(
             browser, *self.MESSAGE_FIELD, time_wait=20
         )
-        message_field.click()
+        self.scroll_to_element(browser, message_field)
         message_field.send_keys(message)
 
     def click_btn_submit(self, browser):
@@ -158,7 +169,7 @@ class FormFields(BasePage):
         submit_button = self.find_element(
             browser, *self.BTN_SUBMIT, time_wait=20
         )
-        submit_button.click()
+        self.scroll_and_click(browser, submit_button)
 
     def get_success_message(self, browser):
         """Возвращает сообщение об успешной отправке формы."""
@@ -166,4 +177,3 @@ class FormFields(BasePage):
         message = alert.text
         alert.accept()
         return message
-

@@ -1,7 +1,8 @@
-from clients.web.automate_now.form_fields import FormFields
 import pytest
 import allure
+
 from storage.urls import AutomateNow
+from clients.web.automate_now.form_fields import FormFields
 
 @pytest.mark.automate_now_form_fields
 @allure.feature("Form_Fields")
