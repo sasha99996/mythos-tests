@@ -72,12 +72,15 @@ class BasePage:
 
     def scroll_to_element(self, browser, element):
         """Прокручивает страницу до элемента"""
-        browser.execute_script("arguments[0].scrollIntoView({ behavior: 'smooth', block: 'center' });", element)
+        browser.execute_script(
+            "arguments[0].scrollIntoView({ behavior: 'smooth', block: 'center' });",
+            element,
+        )
 
     def scroll_and_click(self, browser, element):
         """Скроллит страницу до элемента и кликает"""
         self.scroll_to_element(browser, element)
-        element.click()
+        browser.execute_script("arguments[0].click();", element)
 
     def open_new_window_by_url(self, browser, url=MythosUrls.BASE_URL):
         """Открывает новую вкладку по заданому URL"""
