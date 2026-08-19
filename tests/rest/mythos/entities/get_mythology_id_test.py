@@ -5,6 +5,7 @@ from clients.rest.base_validation import check_response_code
 import pytest
 import allure
 
+
 @pytest.mark.get_mythology_id
 @allure.feature("GET /api/mythology/id")
 class TestMythology:
@@ -22,7 +23,6 @@ class TestMythology:
         with allure.step("Проверка: код ответа = 200"):
             assert response.status_code == 200, "Сущность не найдена"
 
-
     def test_get_mythology_id_with_fixture(self, mythology_id_by_user_tuco):
         with allure.step("Шаг: авторизация пользователем tuco с фикстурой"):
             response = get_mythology_by_id(mythology_id_by_user_tuco)
@@ -38,8 +38,9 @@ class TestMythology:
         with allure.step("Проверка: код ответа = 200"):
             check_response_code(response, expected_code=200)
 
-
-    def test_negative_get_mythology_id(self):  #Негативный автотест при введении букв в поле для ID
+    def test_negative_get_mythology_id(
+        self,
+    ):  # Негативный автотест при введении букв в поле для ID
         with allure.step("Шаг: вызываем команду получения рандоных букв размером 10"):
             negative_mythology_id = get_random_string(size=10, string_type="letters")
         with allure.step("Шаг: присваиваем значение переменной response"):

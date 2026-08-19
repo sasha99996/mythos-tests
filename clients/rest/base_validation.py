@@ -22,6 +22,8 @@ def check_value_in_dicts(items, key, value, comment="Assert-комментари
         assert item[key] == value, comment
 
 
-def check_dicts_are_sorted_by_key(items: list, key: str, reverse=False, comment="Assert-комментарий"):
+def check_dicts_are_sorted_by_key(
+    items: list, key: str, reverse=False, comment="Assert-комментарий"
+):
     """Проверяет, что список словарей items отсортирован по указанному ключу key"""
     assert items == sorted(items, key=lambda item: item[key], reverse=reverse), comment

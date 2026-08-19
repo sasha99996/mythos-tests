@@ -1,4 +1,8 @@
-from clients.rest.mythos_sandbox.entities import create_mythology, delete_mythology_by_id, get_mythology_by_id
+from clients.rest.mythos_sandbox.entities import (
+    create_mythology,
+    delete_mythology_by_id,
+    get_mythology_by_id,
+)
 from clients.rest.base_auth import get_entities_auth_headers
 from clients.rest.base_validation import check_response_code
 import pytest
@@ -26,8 +30,9 @@ class TestMythology:
         with allure.step("Проверка: код ответа = 404"):
             assert find_response.status_code == 404, "Сущность найдена"
 
-
-    def test_negative_delete_mythology_by_id(self, auth_user_tuco):  #Удаление сущности без авторизации (негативный тест)
+    def test_negative_delete_mythology_by_id(
+        self, auth_user_tuco
+    ):  # Удаление сущности без авторизации (негативный тест)
         with allure.step("Шаг: создать сущность"):
             response = create_mythology(auth_user_tuco)
         with allure.step("Проверка: код ответа = 201"):
@@ -38,5 +43,3 @@ class TestMythology:
             delete_response = delete_mythology_by_id(None, mythology_id)
         with allure.step("Проверка: код ответа = 401"):
             check_response_code(delete_response, expected_code=401)
-
-

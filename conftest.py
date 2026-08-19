@@ -1,6 +1,9 @@
 import pytest
 from clients.rest.base_auth import get_entities_auth_headers
-from clients.rest.mythos_sandbox.entities import create_mythology, delete_mythology_by_id
+from clients.rest.mythos_sandbox.entities import (
+    create_mythology,
+    delete_mythology_by_id,
+)
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.service import Service
@@ -11,7 +14,9 @@ from storage.urls import MythosUrls, AutomateNow
 def browser(request):
     """Функция-фикстура для работы с браузером"""
     options = webdriver.ChromeOptions()
-    browser = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+    browser = webdriver.Chrome(
+        service=Service(ChromeDriverManager().install()), options=options
+    )
     browser.get(AutomateNow.FORM_FIELDS_URL)
     yield browser
     browser.quit()
