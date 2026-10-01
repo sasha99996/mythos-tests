@@ -54,7 +54,7 @@ class TestAutomateNowFormFields:
 
 
     @pytest.mark.parametrize("answer_favorite_drink", ["Milk", "Water", "Coffee"])
-    @allure.testcase("https://app.qase.io/case/AN-16")
+    @allure.testcase("https://app.qase.io/case/AN-17")
     @allure.title("Автотест с параметризацией в чек-боксе 'What's your favorite drink?'")
     def test_favorite_drink_with_param (self, answer_favorite_drink, browser):
         with allure.step("Шаг: открываем  страницу Form Fields"):
@@ -66,5 +66,22 @@ class TestAutomateNowFormFields:
         with allure.step("Шаг: Нажимаем кнопку 'Submit' на веб-странице"):
             FormFields().click_btn_submit(browser)
         with allure.step("Шаг: Проверяем сообщение об успешной отправке"):
+            success_message = FormFields().get_success_message(browser)
+            assert success_message == "Message received!"
+
+
+    @pytest.mark.parametrize("answer_favorite_color", ["Red", "Blue", "Yellow", "Green", "#FFC0CB"])
+    @allure.testcase("https://app.qase.io/case/AN-16")
+    @allure.title("Автотест с параметризацией 'Whats your favorite color?'")
+    def test_favorite_color_with_param (self, answer_favorite_color, browser):
+        with allure.step("Шаг:открываем страницу Form Fields"):
+            browser.get(AutomateNow.FORM_FIELDS_URL)
+        with allure.step("Шаг: заполняем поле 'Name'"):
+            FormFields().fill_in_name_field(browser)
+        with allure.step("Шаг: выбираем параметр в чек-боксе 'What's your favorite color?'"):
+            FormFields().choose_favorite_color(browser,answer_favorite_color)
+        with allure.step("Шаг: Нажимаем кнопку 'Submit'"):
+            FormFields().click_btn_submit(browser)
+        with allure.step("Шаг: Проверяем сообщение об успешной проверке"):
             success_message = FormFields().get_success_message(browser)
             assert success_message == "Message received!"
