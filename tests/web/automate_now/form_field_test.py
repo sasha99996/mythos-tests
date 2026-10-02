@@ -78,7 +78,7 @@ class TestAutomateNowFormFields:
             browser.get(AutomateNow.FORM_FIELDS_URL)
         with allure.step("Шаг: заполняем поле 'Name'"):
             FormFields().fill_in_name_field(browser)
-        with allure.step("Шаг: выбираем параметр в чек-боксе 'What's your favorite color?'"):
+        with allure.step("Шаг: Выбираем значение {answer_favorite_color} для поля 'What's your favorite color?'"):
             FormFields().choose_favorite_color(browser,answer_favorite_color)
         with allure.step("Шаг: Нажимаем кнопку 'Submit'"):
             FormFields().click_btn_submit(browser)
