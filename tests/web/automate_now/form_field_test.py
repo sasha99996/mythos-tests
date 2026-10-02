@@ -61,7 +61,7 @@ class TestAutomateNowFormFields:
             browser.get(AutomateNow.FORM_FIELDS_URL)
         with allure.step("Шаг: Заполняем поле 'Name'"):
             FormFields().fill_in_name_field(browser)
-        with allure.step("Шаг: Выбираем один из 3 вариантов ответа в чек-боксе 'What's your favorite drink?'"):
+        with allure.step("Шаг: Выбираем значение {answer_favorite_drink} для поля 'What's your favorite drink?'"):
             FormFields().choose_favorite_drink(browser, answer_favorite_drink)
         with allure.step("Шаг: Нажимаем кнопку 'Submit' на веб-странице"):
             FormFields().click_btn_submit(browser)
