@@ -5,7 +5,6 @@ from storage.urls import AutomateNow
 from clients.web.automate_now.main_page import MainPage
 
 
-
 @pytest.mark.automate_now_main_page
 @allure.feature("Blog_Test")
 class TestAutomateNowFormFields:
@@ -16,5 +15,7 @@ class TestAutomateNowFormFields:
             browser.get(AutomateNow.BASE_URL)
         with allure.step("Шаг: нажимаем на кнопку 'Blog'"):
             MainPage().click_btn_blog(browser)
-        with allure.step("Шаг: проверить что прошел редирект по url 'https://automatenow.io/'"):
+        with allure.step(
+            "Шаг: проверить что прошел редирект по url 'https://automatenow.io/'"
+        ):
             MainPage().check_url_changes(browser, AutomateNow.BLOG_URL)
