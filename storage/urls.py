@@ -13,4 +13,5 @@ class MythosUrls:
 class AutomateNow:
     BASE_URL = "https://practice-automation.com"
     FORM_FIELDS_URL = BASE_URL + "/form-fields"
-    SOFTWARE_URL = "https://automatenow.io/"
+    BLOG_URL = "https://automatenow.io/"
+
